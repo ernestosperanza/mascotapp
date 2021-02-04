@@ -1,0 +1,6 @@
+.jumbotron {
+    background: url('../../assets/jumbo-pets.jpg');
+    background-size: cover;
+    position: relative;
+    color: lightcoral;
+}
