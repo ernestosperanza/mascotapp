@@ -17,6 +17,7 @@ const ItemDetailContainer = () => {
 
         const db = getFirestone()
         const itemColection = db.collection('Items')
+        {/* Limitar la query en 10 */}
 
         itemColection.get()
         .then((querySnapshot) => {

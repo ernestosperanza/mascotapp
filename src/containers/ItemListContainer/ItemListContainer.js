@@ -19,6 +19,7 @@ const ItemListContainer = ({ greeting, items }) => {
 
         const db = getFirestone()
         const itemColection = db.collection('Items')
+        {/* Limitar la query en 10 */}
 
         itemColection.get()
         .then((querySnapshot) => {
@@ -41,7 +42,7 @@ const ItemListContainer = ({ greeting, items }) => {
             } else {
                 setItemList(arrayItems)
             }
-            
+
         }).catch((error) => {
             console.log('Error buscando los items', error)
 
