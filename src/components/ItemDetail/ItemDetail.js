@@ -11,7 +11,7 @@ const ItemDetail = ({ item }) => {
 
     let history = useHistory();
 
-    const [purchaseState, setPurchaseState] = useState(false)
+    const [ purchaseState, setPurchaseState ] = useState(false)
     const { cartState } = useContext(CartContext)
 
     const handler = () => {
@@ -25,7 +25,7 @@ const ItemDetail = ({ item }) => {
                     <Col xs lg="2" >
                         <Card.Img className="itemImage" varian="top" src={item.pictureUrl} alt={item.title} /></Col>
                     <Col xs lg="7">
-                        <Card.Title>{item.title} {cartState.length}</Card.Title>
+                        <Card.Title>{item.title}</Card.Title>
                         <p>Precio: ${item.price}</p>
                         <p>Descripcion: {item.description}</p>
                         <Button variant="outline-success" onClick={() => history.goBack()}>Volver Atras</Button>

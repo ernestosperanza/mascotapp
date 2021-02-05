@@ -2,9 +2,10 @@ import './ItemDetailContainer.css'
 import ItemDetail from '../../components/ItemDetail/ItemDetail'
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import ReactLoading from "react-loading"
+import ReactLoading from 'react-loading'
+import { getFirestone } from '../../firebase'
 
-const ItemDetailContainer = ({ items }) => {
+const ItemDetailContainer = () => {
 
     const [itemState, setItemState] = useState([])
     const [ loading, setLoading ] = useState(true)
@@ -12,26 +13,45 @@ const ItemDetailContainer = ({ items }) => {
 
     useEffect(() => {
 
-        let getItems = new Promise((res, rej) => {
-            setTimeout(() => {
-                items.length ? res(items) : rej("No hay items")
-            }, 2000)
-        });
+        setLoading(true)
 
-        getItems.then((res) => {            
-            setItemState(res[id])
+        const db = getFirestone()
+        const itemColection = db.collection('Items')
+
+        itemColection.get()
+        .then((querySnapshot) => {
+
+            if(querySnapshot.size === 0){
+                console.log('no hay resultados a la query')
+                return
+            }
+            
+            let arrayItems = querySnapshot.docs.map((doc) => {
+                return({
+                    id: doc.id,
+                    ...doc.data()
+                })
+            })
+
+            const result = arrayItems.filter(item => item.id === id)
+            setItemState(result)
+            console.log(itemState)
+
+        }).catch((error) => {
+            console.log('Error buscando obteniendo los datos', error)
+
+        }).finally(() => {
             setLoading(false)
-        }).catch((err) => {
-            console.log("Hubo un error obteniendo los datos : ", err)
-            setLoading(false)
+            
         })
+        
+    }, [])
 
-    }, [id, items])
 
     return (
         <div>
             {loading ? <ReactLoading type={'bubbles'} color="#000000"/>
-                : itemState && <ItemDetail item={itemState}/>}
+                : itemState && <ItemDetail item={itemState[0]}/>}
         </div>
     )
 }
