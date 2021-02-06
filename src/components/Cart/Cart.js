@@ -2,11 +2,13 @@ import './Cart.css'
 import React, { useContext } from 'react';
 import { CartContext } from '../../contexts/CartContext'
 import { Button } from 'react-bootstrap'
+import { useHistory } from 'react-router-dom'
 
 
 const Cart = () => {
 
     const { cartState, cartTotalPrice, clear, removeItem } = useContext(CartContext)
+    let history = useHistory();
 
     return (
         <React.Fragment>
@@ -24,7 +26,9 @@ const Cart = () => {
                         <Button onClick={() => clear()}>Vaciar carro</Button>
                     </div>
                 </div>
-                : <div>No hay elementos en el carro</div>}
+                : <div><p>No hay elementos en el carro</p>
+                    <Button variant="outline-success" onClick={() => history.goBack()}>Volver Atras</Button>
+                    </div>}
         </React.Fragment >
     )
 }
