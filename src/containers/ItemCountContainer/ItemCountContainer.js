@@ -6,7 +6,7 @@ export const ItemCountContainer = ({initial, item, handler}) => {
 
     const [ count, setCount ] = useState(parseInt(initial));
     const [ itemStock, setStock ] = useState(parseInt(item.stock) - 1);
-    const { cartState , addItem } = useContext(CartContext)
+    const { addItem } = useContext(CartContext)
 
 
     const add = () => {
@@ -29,18 +29,18 @@ export const ItemCountContainer = ({initial, item, handler}) => {
     };
 
 
-    const onAdd = (item) => {
+    const onAdd = (item, quantity) => {
         
-        addItem(item)
+        addItem(item, quantity)
         alert(`Agregaste ${count} item al carrito`);
         handler();
-        console.log(cartState)
+        
     };
 
 
     return(
         <React.Fragment>
-            <ItemCount min={sub} max={add} onAdd={() => onAdd(item)} count={count} item={item}/>
+            <ItemCount min={sub} max={add} onAdd={() => onAdd(item, count)} count={count} item={item}/>
         </React.Fragment>
     )
 };

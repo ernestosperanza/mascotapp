@@ -3,7 +3,6 @@ import React, { useContext, useState } from 'react'
 import { Button, Card, Row, Col } from 'react-bootstrap'
 import { useHistory, Link } from "react-router-dom"
 import { ItemCountContainer } from '../../containers/ItemCountContainer/ItemCountContainer'
-import { CartContext } from '../../contexts/CartContext'
 
 
 
@@ -12,7 +11,6 @@ const ItemDetail = ({ item }) => {
     let history = useHistory();
 
     const [ purchaseState, setPurchaseState ] = useState(false)
-    const { cartState } = useContext(CartContext)
 
     const handler = () => {
         setPurchaseState(true);

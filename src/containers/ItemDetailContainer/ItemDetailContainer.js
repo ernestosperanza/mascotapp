@@ -36,7 +36,6 @@ const ItemDetailContainer = () => {
 
             const result = arrayItems.filter(item => item.id === id)
             setItemState(result)
-            console.log(itemState)
 
         }).catch((error) => {
             console.log('Error buscando obteniendo los datos', error)

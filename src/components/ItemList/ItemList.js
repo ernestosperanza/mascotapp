@@ -1,8 +1,9 @@
 import React from 'react';
 import './ItemList.css';
 import { Item } from '../Item/Item';
+import { withRouter } from 'react-router-dom'
 
-export const ItemList = ({items}) => {
+const ItemList = ({items}) => {
 
     
     return(
@@ -11,3 +12,5 @@ export const ItemList = ({items}) => {
         </React.Fragment>
     )
 }
+
+export default withRouter(ItemList)

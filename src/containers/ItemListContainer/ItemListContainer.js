@@ -1,13 +1,13 @@
 import './ItemListContainer.css'
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import { ItemList } from '../../components/ItemList/ItemList'
+import ItemList from '../../components/ItemList/ItemList'
 import Jumbotron from '../../components/Jumbotron/Jumbotron'
 import ReactLoading from 'react-loading'
 import { getFirestone } from '../../firebase'
 
 
-const ItemListContainer = ({ greeting, items }) => {
+const ItemListContainer = ({ greeting }) => {
 
     const [itemList, setItemList] = useState()
     const [ loading, setLoading ] = useState(true)
@@ -50,10 +50,12 @@ const ItemListContainer = ({ greeting, items }) => {
             setLoading(false)
             
         })
+
+        console.log("busco los archivos")
         
     }, [])
 
-        {/*Pasar el loadin a un componente*/}
+    {/*Pasar el loadin a un componente*/}
 
 
     return (

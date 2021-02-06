@@ -1,19 +1,31 @@
 import './Cart.css'
 import React, { useContext } from 'react';
 import { CartContext } from '../../contexts/CartContext'
-import Jumbotron from '../Jumbotron/Jumbotron'
-import ItemListContainer from '../../containers/ItemListContainer/ItemListContainer'
+import { Button } from 'react-bootstrap'
 
 
-const Cart = ()=> {
+const Cart = () => {
 
-    const { cartState } = useContext(CartContext)
+    const { cartState, cartTotalPrice, clear, removeItem } = useContext(CartContext)
 
-    return(
+    return (
         <React.Fragment>
-             {cartState && cartState < 1 ? <Jumbotron title={"No hay productos en el carrito 😢"}/>
-                :<ItemListContainer items={cartState} />}
-        </React.Fragment>
+            {cartState.length > 0 ?
+                <div>
+                    {cartState.map((item, indice) =>
+                        <div>
+                            <li>{`Item: ${item.title} Cantidad: ${item.quantity} Precio: ${item.price} `}</li>
+                            <Button onClick={() => removeItem(item)}> Eliminar item</Button>
+                        </div>)}
+                    <div>
+                        <p>Total: {cartTotalPrice}</p>
+                    </div>
+                    <div>
+                        <Button onClick={() => clear()}>Vaciar carro</Button>
+                    </div>
+                </div>
+                : <div>No hay elementos en el carro</div>}
+        </React.Fragment >
     )
 }
 

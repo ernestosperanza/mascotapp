@@ -1,7 +1,9 @@
 import './App.css';
 import React from 'react';
 
-import NavBar from './components/NavBar/NavBar';
+import NavBar from './components/NavBar/NabBar';
+import NavBarOld from './components/NavBar/NavBarOld';
+
 import Layout from './components/Layout/Layout';
 import NoMatch from './components/NoMatch/NoMatch';
 import Cart from './components/Cart/Cart';
@@ -12,7 +14,8 @@ import ItemDetailContainer from './containers/ItemDetailContainer/ItemDetailCont
 import { Context } from './contexts/CartContext';
 
 import { Helmet } from 'react-helmet';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, 
+         Route, withRouter } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 {/* trabajar en el title dinamico despues */ }
@@ -22,38 +25,23 @@ function App() {
 
   return (
     <div className="App">
+      <Router>
       <Context>
-        <BrowserRouter>
           <Helmet>
             <title>{title}</title>
           </Helmet>
           <Layout>
-            <NavBar></NavBar>
+            <NavBarOld />
             <Switch>
-
-              <Route exact path='/' >
-                <ItemListContainer greeting={"Bienvenido a la Home"} />
-              </Route>
-
-              <Route exact path='/:category'>
-                <ItemListContainer greeting={"Bienvenido Categoria"} />
-              </Route>
-
-              <Route exact path='/item/:id' >
-                <ItemDetailContainer />
-              </Route>
-
-              <Route exact path='/cart' >
-                <Cart />
-              </Route>
-
-              <Route path="*">
-                <NoMatch />
-              </Route>
+              <Route exact path='/' component={withRouter(ItemListContainer)} />
+              <Route exact path='/cart' component={withRouter(Cart)} />
+              <Route exact path='/:category' component={withRouter(ItemListContainer)} />
+              <Route exact path='/item/:id' component={withRouter(ItemDetailContainer)} />
+              <Route path="*" component={NoMatch} />
             </Switch>
           </Layout>
-        </BrowserRouter>
       </Context>
+      </Router>
     </div>
   );
 }

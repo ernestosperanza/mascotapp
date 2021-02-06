@@ -8,7 +8,7 @@ export const Item = ({ item }) => {
 
     return (
         <Card className="itemCard">
-            <Card.Img cascade src={item.pictureUrl} top alt={item.title} overlay='white-slight' className="itemImage" />
+            <Card.Img cascade src={`${item.pictureUrl}`} top alt={item.title} overlay='white-slight' className="itemImage" />
             <Card.Body cascade className='text-center'>
                 <Card.Title>
                     <Link to={`/item/${item.id}`}>
@@ -18,10 +18,6 @@ export const Item = ({ item }) => {
                 <Card.Footer>
                     <span>
                         ${item.price}
-                    </span>
-                    <span>
-                        {/* hacer funcionar el tool tip */}
-                        <CartWidget />
                     </span>
                 </Card.Footer>
             </Card.Body>
