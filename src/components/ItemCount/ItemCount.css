@@ -2,6 +2,10 @@
     width: auto;
 }
 
+#volverAtrasBtn, #countGroupBtn {
+    margin: 1vh 1vh 1vh 1vh;
+}
+
 #itemCountWraper {
     width: fit-content;
     height: fit-content;

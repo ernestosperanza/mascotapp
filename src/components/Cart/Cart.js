@@ -8,14 +8,14 @@ import CartItem from '../CartItem/CartItem'
 
 const Cart = () => {
 
-    const { cartState, cartTotalPrice, clear } = useContext(CartContext)
+    const { cartState } = useContext(CartContext)
     let history = useHistory();
 
     return (
         <React.Fragment>
             {cartState.length > 0 ?
                 <div>
-                    {cartState.map((item, indice) => <CartItem item={item}/>)}
+                    {cartState.map((item, indice) => <CartItem key={indice} item={item}/>)}
                     <CartItem />
                 </div>
                 : <div><p>No hay elementos en el carro</p>

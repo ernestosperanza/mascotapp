@@ -1,4 +1,3 @@
-import './ItemListContainer.css'
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import ItemList from '../../components/ItemList/ItemList'
@@ -59,14 +58,12 @@ const ItemListContainer = ({ greeting }) => {
 
 
     return (
-        <div className='listContainer'>
-            {loading ? <ReactLoading type={'bubbles'} color="#f8f9fa"/>
+        <>
+            {loading ? <ReactLoading type={'bubbles'} color='#000000'/>
                 : itemList && itemList.length < 1 ? <Jumbotron title={"No hay productos de la cateogria seleccionada 😢"}/>
-                    : <Jumbotron title={greeting} text={"Elija los productos"}/>}
-            <div id='itemContainer'>
-                {itemList && <ItemList items={itemList} />}
-            </div>
-        </div>
+                    : null}
+            {itemList && <ItemList items={itemList} />}
+        </>
     )
 };
 

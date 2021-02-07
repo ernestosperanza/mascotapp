@@ -1,14 +1,14 @@
 import './ItemDetail.css'
 import React, { useState } from 'react'
 import { Button, Card, Row, Col } from 'react-bootstrap'
-import { useHistory, Link } from "react-router-dom"
+import { Link } from "react-router-dom"
 import { ItemCountContainer } from '../../containers/ItemCountContainer/ItemCountContainer'
 
 
 
 const ItemDetail = ({ item }) => {
 
-    let history = useHistory();
+
 
     const [ purchaseState, setPurchaseState ] = useState(false)
 
@@ -22,11 +22,11 @@ const ItemDetail = ({ item }) => {
                 <Row>
                     <Col xs lg="2" >
                         <Card.Img className="itemImage" varian="top" src={item.pictureUrl} alt={item.title} /></Col>
-                    <Col xs lg="7">
+                    <Col xs lg="5">
                         <Card.Title>{item.title}</Card.Title>
                         <p>Precio: ${item.price}</p>
                         <p>Descripcion: {item.description}</p>
-                        <Button variant="outline-success" onClick={() => history.goBack()}>Volver Atras</Button>
+                        <p>Stock: {item.stock}</p>
                     </Col>
                     <Col xs lg="3">
                         {purchaseState ? <Link to={'/cart'}><Button variant="outline-success">Terminar Compra</Button></Link>

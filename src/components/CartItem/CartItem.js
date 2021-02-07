@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import './CartItem.css'
 import { Button, Card, Row, Col } from 'react-bootstrap'
 import { CartContext } from '../../contexts/CartContext'
+import { BsFillTrashFill } from "react-icons/bs";
 
 
 
@@ -22,7 +23,7 @@ const CartItem = ({ item }) => {
                         <p>Cantidad: {item.quantity} </p>
                     </Col>
                     <Col xs lg="3">
-                        <Button onClick={() => removeItem(item)}> Eliminar item</Button>
+                        <Button onClick={() => removeItem(item)}><BsFillTrashFill /></Button>
                     </Col>
                 </Row> : 
                 <Row>

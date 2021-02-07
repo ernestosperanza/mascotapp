@@ -1,7 +1,7 @@
 import React from 'react';
 import './NoMatch.css';
 import { useLocation, useHistory } from 'react-router-dom';
-import { Alert, Container } from 'react-bootstrap';
+import { Alert, Container, Button } from 'react-bootstrap';
 
 const NoMatch = () => {
 
@@ -10,12 +10,13 @@ const NoMatch = () => {
 
     return (
         <Container>
-            <Alert variant="danger" onClose={() => history.goBack()} dismissible>
-                <Alert.Heading>Oh snap! Esto es un 404!</Alert.Heading>
-                <p>
-                    No hay concidencias para <code>{location.pathname}</code><br />
-                    Cierra el alerta para volver a la pagina anterior
+            <Alert variant='secondary' onClose={() => history.goBack()} dismissible>
+                <h1>🙄🤦‍♂️</h1>
+                <Alert.Heading>Oh, Maldicion! Esto es un 404!</Alert.Heading>
+                <p>No hay concidencias para 
+                    <code>{location.pathname}</code><br/>
                 </p>
+                <Button variant='outline-secondary' size='sm' onClick={() => history.goBack()}>Volver Atras</Button>
             </Alert>
         </Container>
     );

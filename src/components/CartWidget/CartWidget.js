@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { FaShoppingCart } from "react-icons/fa"
+import { BsBag } from "react-icons/bs"
 import { Badge } from 'react-bootstrap'
 import { CartContext } from '../../contexts/CartContext'
 
@@ -11,7 +11,7 @@ const CartWidget = () => {
 
     return (
         <React.Fragment>
-            < FaShoppingCart />
+            <BsBag />
             <Badge pill variant="success">
                 {`${cartCount}`}
             </Badge>

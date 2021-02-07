@@ -21,17 +21,17 @@ const NavBar = () => {
                         <Nav.Link>Home</Nav.Link>
                     </LinkContainer>
                     <NavDropdown title="Categorias" id="collasible-nav-dropdown">
-                        <LinkContainer to="/category1">
+                        <LinkContainer to="/category/category1">
                             <NavDropdown.Item>Perros</NavDropdown.Item>
                         </LinkContainer>
-                        <LinkContainer to="/category2">
+                        <LinkContainer to="/category/category2">
                             <NavDropdown.Item>Gatos</NavDropdown.Item>
                         </LinkContainer>
-                        <LinkContainer to="/category3">
+                        <LinkContainer to="/category/category3">
                             <NavDropdown.Item>Animales Pequeños</NavDropdown.Item>
                         </LinkContainer>
                         <NavDropdown.Divider />
-                        <LinkContainer to="/category4">
+                        <LinkContainer to="/category/category4">
                             <NavDropdown.Item>Ofertas</NavDropdown.Item>
                         </LinkContainer>
                     </NavDropdown>

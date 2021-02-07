@@ -1,4 +1,3 @@
-import './ItemDetailContainer.css'
 import ItemDetail from '../../components/ItemDetail/ItemDetail'
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
@@ -50,7 +49,7 @@ const ItemDetailContainer = () => {
 
     return (
         <div>
-            {loading ? <ReactLoading type={'bubbles'} color="#000000"/>
+            {loading ? <ReactLoading type={'bubbles'} color='#000000'/>
                 : itemState && <ItemDetail item={itemState[0]}/>}
         </div>
     )

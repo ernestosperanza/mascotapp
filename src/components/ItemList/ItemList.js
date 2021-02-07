@@ -1,13 +1,18 @@
 import React from 'react'
 import { Item } from '../Item/Item'
 import { withRouter } from 'react-router-dom'
+import { Row } from 'react-bootstrap'
 
-const ItemList = ({items}) => {
+const ItemList = ({ items }) => {
 
-    
-    return(
+
+    return (
         <React.Fragment>
-            {items.map((item, indice) => <Item key={indice} item={item} />)}
+            <Row>
+                <div className="itemList">
+                    {items.map((item, indice) => <Item key={indice} item={item} />)}
+                </div>
+            </Row>
         </React.Fragment>
     )
 }
