@@ -1,7 +1,6 @@
 import React from 'react';
 import { Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom'
-import CartWidget from '../CartWidget/CartWidget';
 import './Item.css'
 
 export const Item = ({ item }) => {

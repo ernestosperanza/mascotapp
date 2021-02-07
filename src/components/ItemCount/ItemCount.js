@@ -10,9 +10,9 @@ export const ItemCount = ({ min, max, onAdd, count, item }) => {
             <Card.Body>
                 <Row>
                     <ButtonGroup size="sm">
-                        <Button onClick={min} variant="outline-danger" >-</Button>
+                        <Button onClick={min} disabled={count === 0} variant="outline-danger" >-</Button>
                         <Button className="disabled" variant="outline-secondary">Stock: {parseInt(item.stock)}</Button>
-                        <Button onClick={max} variant="outline-success">+</Button>
+                        <Button onClick={max} disabled={count >= item.stock} variant="outline-success">+</Button>
                     </ButtonGroup>
                 </Row>
                 <br></br>

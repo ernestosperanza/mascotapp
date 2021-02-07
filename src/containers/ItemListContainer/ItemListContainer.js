@@ -48,10 +48,10 @@ const ItemListContainer = ({ greeting }) => {
 
         }).finally(() => {
             setLoading(false)
-            
+            console.log("Resolvio api call")
         })
 
-        console.log("busco los archivos")
+        console.log("Monto componente")
         
     }, [])
 

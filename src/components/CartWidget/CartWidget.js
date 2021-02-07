@@ -1,5 +1,4 @@
 import React, { useContext } from 'react'
-import './CartWidget.css'
 import { FaShoppingCart } from "react-icons/fa"
 import { Badge } from 'react-bootstrap'
 import { CartContext } from '../../contexts/CartContext'

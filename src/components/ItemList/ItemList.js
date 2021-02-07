@@ -1,6 +1,5 @@
-import React from 'react';
-import './ItemList.css';
-import { Item } from '../Item/Item';
+import React from 'react'
+import { Item } from '../Item/Item'
 import { withRouter } from 'react-router-dom'
 
 const ItemList = ({items}) => {

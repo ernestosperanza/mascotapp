@@ -1,5 +1,5 @@
 import './ItemDetail.css'
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 import { Button, Card, Row, Col } from 'react-bootstrap'
 import { useHistory, Link } from "react-router-dom"
 import { ItemCountContainer } from '../../containers/ItemCountContainer/ItemCountContainer'
@@ -30,7 +30,7 @@ const ItemDetail = ({ item }) => {
                     </Col>
                     <Col xs lg="3">
                         {purchaseState ? <Link to={'/cart'}><Button variant="outline-success">Terminar Compra</Button></Link>
-                        :<ItemCountContainer item={item} initial={1} handler={handler}/>}
+                        :<ItemCountContainer item={item} handler={handler}/>}
                     </Col>
                 </Row>
             </Card.Body>

@@ -2,9 +2,9 @@ import React, {useState, useContext } from 'react'
 import {ItemCount} from '../../components/ItemCount/ItemCount'
 import { CartContext } from '../../contexts/CartContext'
 
-export const ItemCountContainer = ({initial, item, handler}) => {
+export const ItemCountContainer = ({ item, handler}) => {
 
-    const [ count, setCount ] = useState(parseInt(initial));
+    const [ count, setCount ] = useState(parseInt(1));
     const [ itemStock, setStock ] = useState(parseInt(item.stock) - 1);
     const { addItem } = useContext(CartContext)
 
@@ -13,8 +13,6 @@ export const ItemCountContainer = ({initial, item, handler}) => {
         if(count < item.stock){
             setCount(count + 1);
             setStock(itemStock - 1);
-        } else {
-            alert('No se hay mas productos en stock para agregar');
         }
     };
 
@@ -23,8 +21,6 @@ export const ItemCountContainer = ({initial, item, handler}) => {
         if(count > 0){
             setCount(count - 1);
             setStock(itemStock + 1);
-        } else {
-            alert('El carro esta vacio, no se pueden remover mas items');
         }
     };
 
@@ -32,15 +28,14 @@ export const ItemCountContainer = ({initial, item, handler}) => {
     const onAdd = (item, quantity) => {
         
         addItem(item, quantity)
-        alert(`Agregaste ${count} item al carrito`);
         handler();
-        
     };
 
 
     return(
         <React.Fragment>
-            <ItemCount min={sub} max={add} onAdd={() => onAdd(item, count)} count={count} item={item}/>
+            <ItemCount min={sub} max={add} onAdd={() => onAdd(item, count)} 
+                       count={count} item={item}/>
         </React.Fragment>
     )
 };

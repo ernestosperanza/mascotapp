@@ -2,11 +2,10 @@ import React, { useContext } from 'react'
 import CartWidget from '../CartWidget/CartWidget'
 import { Nav, Navbar, NavDropdown } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
-import { withRouter } from 'react-router-dom'
 import { CartContext } from '../../contexts/CartContext'
 
 
-const NavBarOld = () => {
+const NavBar = () => {
 
     const { cartState } = useContext(CartContext)
 
@@ -49,4 +48,4 @@ const NavBarOld = () => {
     )
 }
 
-export default NavBarOld;
+export default NavBar;
