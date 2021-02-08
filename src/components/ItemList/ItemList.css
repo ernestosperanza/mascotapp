@@ -1,5 +1,9 @@
 .itemList {
-    align-items: center;
-    align-content: center;
-    display: flex !important;
+    border: 2px solid red !important;
+    height: 100% !important;
+    align-items: center !important;
+    align-content: center !important;
+    display: contents !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
 }

@@ -7,7 +7,7 @@ export const Item = ({ item }) => {
 
     return (
             <Col>
-                <Card style={{ width: '18rem' }} className="itemCard">
+                <Card className="itemCard">
                     <Card.Img src={`${item.pictureUrl}`} top alt={item.title} overlay='white-slight' className="itemImage" />
                     <Card.Body className='text-center'>
                         <Card.Title>

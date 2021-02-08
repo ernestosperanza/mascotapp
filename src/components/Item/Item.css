@@ -1,0 +1,11 @@
+.card-img {
+    width: 100% !important;
+    height: 15vw !important;
+    object-fit: cover !important;
+}
+
+.itemCard {
+    height: 100%;
+    width: 100%;
+    border: 2px solid red !important;
+}
