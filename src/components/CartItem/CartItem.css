@@ -1,11 +1,4 @@
-.itemCard {
-    flex: 1;
-    width: fit-content;
-    align-items: center;
-    align-content: center;
-}
-
-.itemDetailCard {
+.itemDetailCatr {
     flex-direction: row !important;
 }
 

@@ -4,6 +4,7 @@ import ItemList from '../../components/ItemList/ItemList'
 import Jumbotron from '../../components/Jumbotron/Jumbotron'
 import ReactLoading from 'react-loading'
 import { getFirestone } from '../../firebase'
+import TitleContainer from '../TitleContainer/TitleContainer'
 
 
 const ItemListContainer = () => {
@@ -11,7 +12,6 @@ const ItemListContainer = () => {
     const [itemList, setItemList] = useState()
     const [loading, setLoading] = useState(true)
     const { category } = useParams()
-
 
     useEffect(() => {
 
@@ -58,12 +58,13 @@ const ItemListContainer = () => {
 
 
     return (
-        <>
+        <React.Fragment>
+            <TitleContainer category={category} />
             {loading ? <ReactLoading type={'bubbles'} color='#000000' />
                 : itemList && itemList.length < 1 ? <Jumbotron title={"No hay productos de la cateogria seleccionada 😢"} />
                     : null}
             {itemList && <ItemList items={itemList} />}
-        </>
+        </React.Fragment>
     )
 };
 

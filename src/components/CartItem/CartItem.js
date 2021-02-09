@@ -11,7 +11,7 @@ const CartItem = ({ item }) => {
     const { removeItem, clear, cartTotalPrice } = useContext(CartContext)
 
     return (
-        <Card className="itemDetailCard">
+        <Card className="itemDetailCart">
             <Card.Body>
             {item ?
                 <Row>

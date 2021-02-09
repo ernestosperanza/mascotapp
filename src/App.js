@@ -11,13 +11,9 @@ import ItemDetailContainer from './containers/ItemDetailContainer/ItemDetailCont
 
 import { Context } from './contexts/CartContext'
 
-import { Helmet } from 'react-helmet'
 import { BrowserRouter as Router, Switch, 
          Route, withRouter } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css'
-
-{/* trabajar en el title dinamico despues */ }
-const title = 'Mascotapp - App'
 
 function App() {
 
@@ -25,15 +21,12 @@ function App() {
     <div className="App">
       <Router>
       <Context>
-          <Helmet>
-            <title>{title}</title>
-          </Helmet>
           <Layout>
             <NavBar />
             <Switch>
               <Route exact path='/' component={withRouter(ItemListContainer)} />
               <Route exact path='/cart' component={withRouter(Cart)} />
-              <Route exact path='/category/:category' render={() => <ItemListContainer/>} />
+              <Route exact path='/category/:category' component={withRouter(ItemListContainer)} />
               <Route exact path='/item/:id' component={withRouter(ItemDetailContainer)} />
               <Route path='*' component={withRouter(NoMatch)} />
             </Switch>
