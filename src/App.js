@@ -33,7 +33,7 @@ function App() {
             <Switch>
               <Route exact path='/' component={withRouter(ItemListContainer)} />
               <Route exact path='/cart' component={withRouter(Cart)} />
-              <Route exact path='/category/:category' component={withRouter(ItemListContainer)} />
+              <Route exact path='/category/:category' render={() => <ItemListContainer/>} />
               <Route exact path='/item/:id' component={withRouter(ItemDetailContainer)} />
               <Route path='*' component={withRouter(NoMatch)} />
             </Switch>

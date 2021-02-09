@@ -6,61 +6,61 @@ import ReactLoading from 'react-loading'
 import { getFirestone } from '../../firebase'
 
 
-const ItemListContainer = ({ greeting }) => {
+const ItemListContainer = () => {
 
     const [itemList, setItemList] = useState()
-    const [ loading, setLoading ] = useState(true)
+    const [loading, setLoading] = useState(true)
     const { category } = useParams()
+
 
     useEffect(() => {
 
         setLoading(true)
-
         const db = getFirestone()
-        const itemColection = db.collection('Items')
-        {/* Limitar la query en 10 */}
+        const items = db.collection('Items')
+        let itemColection
+
+        {/* Limitar la query en 10 */ }
+        if (category) {
+            const itemCategory = items.where('category', '==', category)
+            itemColection = itemCategory
+        } else {
+            itemColection = items
+        }
 
         itemColection.get()
-        .then((querySnapshot) => {
+            .then((querySnapshot) => {
 
-            if(querySnapshot.size === 0){
-                console.log('no hay resultados a la query')
-                return
-            }
-            
-            let arrayItems = querySnapshot.docs.map((doc) => {
-                return({
-                    id: doc.id,
-                    ...doc.data()
+                if (querySnapshot.size === 0) {
+                    setItemList([])
+                    return
+                }
+
+                let arrayItems = querySnapshot.docs.map((doc) => {
+                    return ({
+                        id: doc.id,
+                        ...doc.data()
+                    })
                 })
+                setItemList(arrayItems)
+
+            }).catch((error) => {
+                console.log('Error buscando los items', error)
+
+            }).finally(() => {
+                setLoading(false)
             })
 
-            if (category) {
-                const result = arrayItems.filter(item => item.category === category)
-                setItemList(result)
-            } else {
-                setItemList(arrayItems)
-            }
+    }, [category])
 
-        }).catch((error) => {
-            console.log('Error buscando los items', error)
 
-        }).finally(() => {
-            setLoading(false)
-            console.log("Resolvio api call")
-        })
-
-        console.log("Monto componente")
-        
-    }, [])
-
-    {/*Pasar el loadin a un componente*/}
+    {/*Pasar el loadin a un componente*/ }
 
 
     return (
         <>
-            {loading ? <ReactLoading type={'bubbles'} color='#000000'/>
-                : itemList && itemList.length < 1 ? <Jumbotron title={"No hay productos de la cateogria seleccionada 😢"}/>
+            {loading ? <ReactLoading type={'bubbles'} color='#000000' />
+                : itemList && itemList.length < 1 ? <Jumbotron title={"No hay productos de la cateogria seleccionada 😢"} />
                     : null}
             {itemList && <ItemList items={itemList} />}
         </>
