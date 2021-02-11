@@ -1,23 +1,23 @@
-import ItemDetail from '../../components/ItemDetail/ItemDetail'
 import React, { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
-import Loader from '../../components/Loader/Loader'
+import TitleContainer from '../TitleContainer/TitleContainer'
 import { getFirestore } from '../../firebase'
-import NoMatch from '../../components/NoMatch/NoMatch'
+import Order from '../../components/Orders/Order'
+import Jumbotron from '../../components/Jumbotron/Jumbotron'
+import Loader from '../../components/Loader/Loader'
 
 
-const ItemDetailContainer = () => {
 
-    const [itemState, setItemState] = useState([])
+const OrdersDetail = () => {
+
+    const [ orders, setOrders ] = useState()
     const [loading, setLoading] = useState(true)
-    let { id } = useParams()
 
     useEffect(() => {
 
         setLoading(true)
 
         const db = getFirestore()
-        const itemColection = db.collection('Items')
+        const itemColection = db.collection('Orders')
 
         itemColection.get()
             .then((querySnapshot) => {
@@ -27,15 +27,13 @@ const ItemDetailContainer = () => {
                     return
                 }
 
-                let arrayItems = querySnapshot.docs.map((doc) => {
+                const result = querySnapshot.docs.map((doc) => {
                     return ({
                         id: doc.id,
                         ...doc.data()
                     })
                 })
-
-                const result = arrayItems.filter(item => item.id === id)
-                setItemState(result)
+                setOrders(result)
 
             }).catch((error) => {
                 console.log('Error buscando obteniendo los datos', error)
@@ -44,16 +42,19 @@ const ItemDetailContainer = () => {
                 setLoading(false)
             })
 
-    }, [id])
+    }, [])
+
 
 
     return (
         <React.Fragment>
-                {loading ? <Loader />
-                    : (itemState.length > 0) ? <ItemDetail item={itemState[0]} />
-                        : <NoMatch  itemId={id}/>}
+            <TitleContainer page={'Ordenes'} />
+            {loading ? <Loader />
+            : orders ? orders.map((order, indice) => <Order key={indice} order={order} />)
+                :<Jumbotron title="No hay ordenes para mostrar 😅" />}
         </React.Fragment>
     )
+
 }
 
-export default ItemDetailContainer
+export default OrdersDetail

@@ -15,6 +15,6 @@ export function getFirebase() {
     return app
 }
 
-export function getFirestone() {
+export function getFirestore() {
     return firebase.firestore(app)
 }

@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import ItemList from '../../components/ItemList/ItemList'
 import Jumbotron from '../../components/Jumbotron/Jumbotron'
-import ReactLoading from 'react-loading'
-import { getFirestone } from '../../firebase'
+import { getFirestore } from '../../firebase'
 import TitleContainer from '../TitleContainer/TitleContainer'
+import Loader from '../../components/Loader/Loader'
 
 
 const ItemListContainer = () => {
@@ -16,11 +16,10 @@ const ItemListContainer = () => {
     useEffect(() => {
 
         setLoading(true)
-        const db = getFirestone()
+        const db = getFirestore()
         const items = db.collection('Items')
         let itemColection
 
-        {/* Limitar la query en 10 */ }
         if (category) {
             const itemCategory = items.where('category', '==', category)
             itemColection = itemCategory
@@ -54,13 +53,10 @@ const ItemListContainer = () => {
     }, [category])
 
 
-    {/*Pasar el loadin a un componente*/ }
-
-
     return (
         <React.Fragment>
             <TitleContainer category={category} />
-            {loading ? <ReactLoading type={'bubbles'} color='#000000' />
+            {loading ? <Loader />
                 : itemList && itemList.length < 1 ? <Jumbotron title={"No hay productos de la cateogria seleccionada 😢"} />
                     : null}
             {itemList && <ItemList items={itemList} />}

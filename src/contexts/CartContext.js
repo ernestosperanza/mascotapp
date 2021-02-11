@@ -5,27 +5,41 @@ export const CartContext = React.createContext()
 export const Context = ({children}) => {
 
     const [ cartState, setCartState ] = useState([])
+    const [ orderId, setOrderId ] = useState()
 
     const cartCount = cartState.reduce((a, b) => { return a + b.quantity}, 0)
     const cartTotalPrice = cartState.reduce((a, b) => { return a + (b.price * b.quantity)}, 0)
 
     const addItem = ( item, quantity ) => {
 
-        item.quantity = quantity
-        setCartState([...cartState, item])
+        const itemInCart = (cartState.findIndex((ele) => ele.id === item.id))
 
+        if(itemInCart !== -1){
+            const prevQuantity = cartState[itemInCart].quantity
+            const newQuantity = quantity + prevQuantity
+            if(newQuantity <= item.stock){
+                const newCart = [...cartState]
+                newCart[itemInCart].quantity = newQuantity
+                setCartState(newCart)
+            } else {
+                alert("No hay suficientes productos en stock")
+            }
+        } else {
+            item.quantity = quantity
+            setCartState([...cartState, item])
+        }
     }
 
     const removeItem = (itemId) => {
+
         const itemInCart = (cartState.findIndex((ele) => ele.id === itemId))
         if(itemInCart) {
             let newCart = [...cartState]
             newCart.splice(itemInCart,1)
             setCartState(newCart)
         } else {
-            console.log("no se encontro ese elemento para remover")
+            alert("no se encontro ese elemento para remover")
         }
-        
     }
     
     const isInCart = (itemId) => {
@@ -42,7 +56,8 @@ export const Context = ({children}) => {
 
     return(
         <CartContext.Provider value={{cartState, cartCount, addItem, cartTotalPrice, 
-                                      clear, isInCart, removeItem}}>
+                                      clear, isInCart, removeItem, setOrderId,
+                                      orderId}}>
             {children}
         </CartContext.Provider>
     )

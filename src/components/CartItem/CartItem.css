@@ -6,3 +6,7 @@
     height: 80px !important;
     width: 80px !important;
 }
+
+.removeBtn {
+    margin: 12px;
+}

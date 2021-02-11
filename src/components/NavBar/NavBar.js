@@ -3,6 +3,7 @@ import CartWidget from '../CartWidget/CartWidget'
 import { Nav, Navbar, NavDropdown } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 import { CartContext } from '../../contexts/CartContext'
+import './NavBar.css'
 
 
 const NavBar = () => {
@@ -10,7 +11,7 @@ const NavBar = () => {
     const { cartState } = useContext(CartContext)
 
     return (
-        <Navbar collapseOnSelect expand="lg" variant="light">
+        <Navbar className='navBarContainer' collapseOnSelect expand="lg" variant="light">
             <LinkContainer to="/">
                 <Navbar.Brand>MASCOTAPP 🐱</Navbar.Brand>
             </LinkContainer>
@@ -35,6 +36,9 @@ const NavBar = () => {
                             <NavDropdown.Item>Ofertas</NavDropdown.Item>
                         </LinkContainer>
                     </NavDropdown>
+                    <LinkContainer to='/ordenes'>
+                        <Nav.Link>Ordenes</Nav.Link>
+                    </LinkContainer>
                 </Nav>
                 <Nav>
                     <LinkContainer to="/cart">

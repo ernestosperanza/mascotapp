@@ -1,10 +1,11 @@
-import './Cart.css'
 import React, { useContext } from 'react';
 import { CartContext } from '../../contexts/CartContext'
 import { Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import CartItem from '../CartItem/CartItem'
-import TitleContainer from '../../containers/TitleContainer/TitleContainer';
+import TitleContainer from '../../containers/TitleContainer/TitleContainer'
+import Jumbotron from '../Jumbotron/Jumbotron'
+import './Cart.css'
 
 
 const Cart = () => {
@@ -17,15 +18,16 @@ const Cart = () => {
         <React.Fragment>
             <TitleContainer page={page} />
             {cartState.length > 0 ?
-                <div>
+                <React.Fragment>
                     {cartState.map((item, indice) => <CartItem key={indice} item={item} />)}
                     <CartItem />
-                </div>
-                : <div><p>No hay elementos en el carro</p>
+                </React.Fragment>
+                :<React.Fragment>
+                    <Jumbotron title={'No hay elementos en el carro 😩'}/>
                     <Link to={'/'}>
                         <Button variant="outline-success">Volver Atras</Button>
                     </Link>
-                </div>}
+                    </React.Fragment>}
         </React.Fragment >
     )
 }

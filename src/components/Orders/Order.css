@@ -1,0 +1,8 @@
+.itemOrderCard {
+    flex-direction: row !important;
+}
+
+#purchaseStateWraper {
+    width: fit-content;
+    height: fit-content;
+}

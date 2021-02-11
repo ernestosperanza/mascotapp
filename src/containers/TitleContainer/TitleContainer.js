@@ -18,6 +18,8 @@ const TitleContainer = ({ page, category }) => {
             case 'category4':
                 page = 'Ofertas';
                 break;
+            default:
+                page = 'Categorias'
         }
     } else if (!page){
         page = 'Home'

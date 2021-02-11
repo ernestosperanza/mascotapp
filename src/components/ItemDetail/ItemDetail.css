@@ -1,3 +1,16 @@
 .itemDetailCard {
     flex-direction: row !important;
 }
+
+#terminarCompraBtnRow , #comprarMasBtnRow {
+    margin: 1vh 1vh 1vh 1vh;
+}
+
+#comprarMasBtn {
+    width: fit-content;
+}
+
+#purchaseStateWraper {
+    width: fit-content;
+    height: fit-content;
+}

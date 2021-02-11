@@ -1,9 +1,9 @@
-import './ItemDetail.css'
 import React, { useState } from 'react'
 import { Button, Card, Row, Col } from 'react-bootstrap'
 import { Link } from "react-router-dom"
 import { ItemCountContainer } from '../../containers/ItemCountContainer/ItemCountContainer'
 import TitleContainer from '../../containers/TitleContainer/TitleContainer'
+import './ItemDetail.css'
 
 
 
@@ -31,7 +31,15 @@ const ItemDetail = ({ item }) => {
                         <p>Stock: {item.stock}</p>
                     </Col>
                     <Col xs lg="3">
-                        {purchaseState ? <Link to={'/cart'}><Button variant="outline-success">Terminar Compra</Button></Link>
+                        {purchaseState ? 
+                        <Col id="purchaseStateWraper">
+                            <Row id="terminarCompraBtnRow">
+                            <Link to={'/cart'}><Button variant="outline-success">Terminar Compra</Button></Link>
+                            </Row>
+                            <Row id="comprarMasBtnRow">
+                            <Link to={'/'}><Button variant="outline-dark">Volver a la Home</Button></Link>
+                            </Row>
+                        </Col>
                         :<ItemCountContainer item={item} handler={handler}/>}
                     </Col>
                 </Row>
