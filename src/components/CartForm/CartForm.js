@@ -1,15 +1,30 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { withRouter } from 'react-router-dom'
-import { Form, Col, Row, Button } from 'react-bootstrap'
+import { Form, Col, Row, Button, Alert } from 'react-bootstrap'
 import { CartContext } from '../../contexts/CartContext'
-import { Link } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import './CartForm.css'
 
 
-const CartForm = ({user, setUser, createOrder}) => {
+const CartForm = ({ user, setUser, createOrder }) => {
 
+    let history = useHistory();
     const { clear } = useContext(CartContext)
-    const onDataChange = (evt, name) => setUser({...user, [name]: evt.target.value})
+    const [show, setShow] = useState()
+    const onDataChange = (evt, name) => setUser({ ...user, [name]: evt.target.value })
+
+    const sendData = () => {
+        if (user.email === user.emailVerificacion) {
+            createOrder()
+            history.push('/gracias')
+        } else {
+            setShow(true)
+        }
+    }
+
+    useEffect(() => {
+        setShow(false)
+    }, [user]) 
 
     return (
         <Form className='cartFormContainer'>
@@ -18,18 +33,32 @@ const CartForm = ({user, setUser, createOrder}) => {
                     Nombre
                 </Form.Label>
                 <Col sm={10}>
-                    <Form.Control placeholder="Jose Manuel de La Fuente" required
-                                    onChange={(e)=>onDataChange(e, 'name')} />
+                    <Form.Control placeholder="Jose Manuel de La Fuente"
+                        onChange={(e) => onDataChange(e, 'name')} />
                 </Col>
             </Form.Group>
+
+            <Alert show={show} variant='danger'>
+                Los emails ingresados no coinciden, modifique los datos e intente nuevamente.
+            </Alert>
 
             <Form.Group as={Row} controlId="formHorizontalEmail">
                 <Form.Label column sm={2}>
                     Email
                 </Form.Label>
                 <Col sm={10}>
-                    <Form.Control type="email" placeholder="jose-manuel99@unemail.com" 
-                                  onChange={(e)=>onDataChange(e, 'email')} required/>
+                    <Form.Control type="email" placeholder="jose-manuel99@unemail.com"
+                        onChange={(e) => onDataChange(e, 'email')} />
+                </Col>
+            </Form.Group>
+
+            <Form.Group as={Row} controlId="formHorizontalEmailVerificacion">
+                <Form.Label column sm={2}>
+                    Verificar Email
+                </Form.Label>
+                <Col sm={10}>
+                    <Form.Control type="email" placeholder="jose-manuel99@unemail.com"
+                        onChange={(e) => onDataChange(e, 'emailVerificacion')} />
                 </Col>
             </Form.Group>
 
@@ -38,16 +67,17 @@ const CartForm = ({user, setUser, createOrder}) => {
                     Telefono
                 </Form.Label>
                 <Col sm={10}>
-                    <Form.Control type="number" placeholder="099-000-000" 
-                                onChange={(e)=>onDataChange(e, 'telefono')}required/>
+                    <Form.Control type="number" placeholder="099-000-000"
+                        onChange={(e) => onDataChange(e, 'telefono')} />
                 </Col>
             </Form.Group>
             <Form.Group as={Row}>
                 <Col>
-                <Button className='cartFormBtn' variant='danger' size="sm" onClick={() => clear()}>Vaciar Carro</Button>
-                <Link to="/gracias">
-                    <Button className='cartFormBtn' variant='success' size="sm" onClick={() => createOrder()}>Realizar Compra</Button>
-                </Link>
+                    <Button className='cartFormBtn' variant='danger' size="sm" onClick={() => clear()}>Vaciar Carro</Button>
+                    <Button className='cartFormBtn' variant='success'
+                        size="sm" onClick={() => sendData()}
+                        disabled={!(user.name && user.email && user.telefono)}
+                    >Realizar Compra</Button>
                 </Col>
             </Form.Group>
         </Form>
