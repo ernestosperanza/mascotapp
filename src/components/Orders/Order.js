@@ -19,10 +19,11 @@ const Order = ({ order }) => {
                         </Col>
                         <Col xs lg="5">
                             <ul>
-                                {items && items.map((item) => <div>
-                                                                <li>{`Producto: ${item.title} Precio: $${item.price}`}</li>
-                                                                <span>{`Cantidad: ${item.quantity}`}</span>
-                                                             </div>)}
+                                {items && items.map((item) => 
+                                <div>
+                                    <li>{`Producto: ${item.title} Precio: $${item.price}`}</li>
+                                    <span>{`Cantidad: ${item.quantity}`}</span>
+                                </div>)}
                             </ul>
                         </Col>
                     </Row>

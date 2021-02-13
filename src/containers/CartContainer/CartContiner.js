@@ -10,9 +10,24 @@ import Loader from '../../components/Loader/Loader'
 
 const CartContainer = () => {
 
-    const { clear, cartState, cartTotalPrice, setOrderId } = useContext(CartContext)
+    const { itemsStock, clear, 
+            cartState, cartTotalPrice, setOrderId } = useContext(CartContext)
     const [ user, setUser ] = useState({})
     const [ loading, setLoading ] = useState(false)
+
+    const updateStock = (cartItems) => {
+
+        const db = getFirestore()
+        const item = db.collection('Items')
+
+        for (const ele of cartItems){
+            const stockActual = itemsStock.find(e => e.id === ele.id)
+            const cartItem = item.doc(ele.id)
+            cartItem.update({
+                stock: stockActual.stock - ele.quantity
+            })
+        }
+    }
 
     const createOrder = () => {
 
@@ -26,6 +41,8 @@ const CartContainer = () => {
                              date: firebase.firestore.Timestamp.fromDate(new Date()),
                              total: cartTotalPrice
         }
+
+        updateStock(newOrder.items)
     
         orders.add(newOrder)
             .then(({ id }) => {

@@ -1,17 +1,19 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { useParams } from 'react-router-dom'
 import ItemList from '../../components/ItemList/ItemList'
 import Jumbotron from '../../components/Jumbotron/Jumbotron'
 import { getFirestore } from '../../firebase'
 import TitleContainer from '../TitleContainer/TitleContainer'
 import Loader from '../../components/Loader/Loader'
+import { CartContext } from '../../contexts/CartContext'
 
 
 const ItemListContainer = () => {
 
-    const [itemList, setItemList] = useState()
-    const [loading, setLoading] = useState(true)
+    const [ itemList, setItemList ] = useState()
+    const [ loading, setLoading ] = useState(true)
     const { category } = useParams()
+    const { setItemStock } = useContext(CartContext)
 
     useEffect(() => {
 
@@ -41,6 +43,7 @@ const ItemListContainer = () => {
                         ...doc.data()
                     })
                 })
+                setItemStock(arrayItems)
                 setItemList(arrayItems)
 
             }).catch((error) => {

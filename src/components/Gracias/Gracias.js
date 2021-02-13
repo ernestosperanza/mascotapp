@@ -9,7 +9,9 @@ const Gracias = () => {
     const { orderId, setOrderId } = useContext(CartContext)
 
     useEffect(() => {
+
         return(setOrderId())
+        
     }, [])
 
     return (
