@@ -4,7 +4,8 @@ import { CartContext } from '../../contexts/CartContext'
 
 export const ItemCountContainer = ({ item, handler}) => {
 
-    const [ count, setCount ] = useState(parseInt(1));
+    const stock = item.stock > 0 ? 1 : 0
+    const [ count, setCount ] = useState(parseInt(stock));
     const [ itemStock, setStock ] = useState(parseInt(item.stock) - 1);
     const { addItem } = useContext(CartContext)
 

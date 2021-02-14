@@ -43,7 +43,7 @@ const NavBar = () => {
                 <Nav>
                     <LinkContainer to="/cart">
                         <Nav.Link>
-                            {cartState.length > 0 && <CartWidget />}
+                            <CartWidget />
                         </Nav.Link>
                     </LinkContainer>
                 </Nav>

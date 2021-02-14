@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, Card, Row, Col } from 'react-bootstrap'
+import { Button, Card, Row, Col, Alert } from 'react-bootstrap'
 import { Link } from "react-router-dom"
 import { ItemCountContainer } from '../../containers/ItemCountContainer/ItemCountContainer'
 import TitleContainer from '../../containers/TitleContainer/TitleContainer'
@@ -29,6 +29,10 @@ const ItemDetail = ({ item }) => {
                         <p>Precio: ${item.price}</p>
                         <p>Descripcion: {item.description}</p>
                         <p>Stock: {item.stock}</p>
+                        {item.stock < 1 && 
+                                <Alert variant='danger'>
+                                    El item se encuentra tempotalmente fuera de stock
+                                </Alert>}
                     </Col>
                     <Col xs lg="3">
                         {purchaseState ? 

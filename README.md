@@ -7,15 +7,15 @@ El proyecto es un Ecommerce tienda de mascotas, busca ofrecer una experiencia de
 
 #### Relacionadas con la UI
 react-bootstrap<br>
-react-icons<br>
-react-loading<br>
+react-icons<br> (Esta libreria se encarga del los inconos del proyecto)
+react-loading<br> (Esta libreria contiene la animacion del loading)
 
 #### Relacionadas con el Routing
 react-router-dom<br>
-react-router-bootstrap<br>
+react-router-bootstrap<br> (Esta libreria es necesaria para el correcto funcionamiento del NavBar)
 
 #### Esta libreria se usa para agregar el title a la pagina
-react-helmet<br>
+react-helmet<br> (Esto es un detalle adicional para mejorar la experiencia de usuario dando feedback de la pagina)
 
 #### Se utiliza firebase para guardar los datos 
 firebase<br>

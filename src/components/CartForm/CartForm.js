@@ -28,6 +28,11 @@ const CartForm = ({ user, setUser, createOrder }) => {
 
     return (
         <Form className='cartFormContainer'>
+
+            <Alert show={show} variant='danger'>
+                Los emails ingresados no coinciden, modifique los datos e intente nuevamente.
+            </Alert>
+            
             <Form.Group as={Row} controlId="formHorizontalName">
                 <Form.Label column sm={2}>
                     Nombre
@@ -37,10 +42,6 @@ const CartForm = ({ user, setUser, createOrder }) => {
                         onChange={(e) => onDataChange(e, 'name')} />
                 </Col>
             </Form.Group>
-
-            <Alert show={show} variant='danger'>
-                Los emails ingresados no coinciden, modifique los datos e intente nuevamente.
-            </Alert>
 
             <Form.Group as={Row} controlId="formHorizontalEmail">
                 <Form.Label column sm={2}>

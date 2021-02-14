@@ -12,9 +12,9 @@ const CartWidget = () => {
     return (
         <React.Fragment>
             <BsBag />
-            <Badge pill variant="success">
+            {cartCount > 0 && <Badge pill variant="success">
                 {`${cartCount}`}
-            </Badge>
+            </Badge>}
         </React.Fragment>
     )
 }

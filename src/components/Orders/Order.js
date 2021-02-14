@@ -14,7 +14,6 @@ const Order = ({ order }) => {
                 <Card.Body>
                     <Row>
                         <Col xs lg="5">
-                            <p>{`User: ${order.buyer.name}`}</p>
                             <p>{`Id de la orden: ${order.id}`}</p>
                         </Col>
                         <Col xs lg="5">

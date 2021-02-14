@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Card, Row, Col, OverlayTrigger, Tooltip } from 'react-bootstrap';
+import { Card, Row, Col, OverlayTrigger, Tooltip, Alert } from 'react-bootstrap';
 import { Link } from 'react-router-dom'
 import './Item.css'
 import { BsBag, BsFillTrashFill } from "react-icons/bs";
@@ -20,6 +20,10 @@ export const Item = ({ item }) => {
                             <strong>{item.title}</strong>
                         </Link>
                     </Card.Title>
+                    {item.stock < 1 && 
+                                <Alert variant='danger'>
+                                    El item se encuentra tempotalmente fuera de stock
+                                </Alert>}
                     <Card.Footer>
                         <Row>
                             <Col>
