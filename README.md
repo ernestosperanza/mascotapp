@@ -21,6 +21,6 @@ react-helmet (Esto es un detalle adicional para mejorar la experiencia de usuari
 firebase<br>
 
 
-![Link al Gif 1 demo de pagina](https://drive.google.com/drive/folders/1LaEnbj_5NIoXGLOYNwzTxCtFJ4lLTbC_)<br>
+![Link al Gif 1 demo de pagina](https://media.giphy.com/media/raIaw189YIGk85SUU1/giphy.gif)<br>
 [Link al Gif 2 demo de pagina](https://www.loom.com/share/db481e92de6740f99e015d1d003972e6)
 [Link al Gif 3 demo de pagina](https://www.loom.com/share/db481e92de6740f99e015d1d003972e6)
